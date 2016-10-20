@@ -24,7 +24,13 @@ category:            FRP
 build-type:          Simple
 cabal-version:       >=1.10
 
+flag onlyghcjs
+  description: Do not build with GHC
+
+
 library
+  if !impl(ghcjs) && flag(onlyghcjs)
+    buildable: False
   hs-source-dirs: src
 
   exposed-modules:
